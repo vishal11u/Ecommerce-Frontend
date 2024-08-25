@@ -47,14 +47,14 @@ const drawerModules = [
         icon: <MdOutlineDashboard size={21} />,
         path: '/'
     },
+    // {
+    //     id: 2,
+    //     title: 'Group Chat',
+    //     icon: <RiMessage2Line size={20} />,
+    //     path: '/chat'
+    // },
     {
         id: 2,
-        title: 'Group Chat',
-        icon: <RiMessage2Line size={20} />,
-        path: '/chat'
-    },
-    {
-        id: 3,
         title: 'Details',
         icon: <SiOpenbadges size={20} />,
         path: '/data'
@@ -66,13 +66,13 @@ const drawerModules = [
     //     path: '/'
     // },
     {
-        id: 4,
+        id: 3,
         title: 'Products',
         icon: <BsCreditCard2Front size={20} />,
         path: '/cardcollection'
     },
     {
-        id: 5,
+        id: 4,
         title: 'Notes',
         icon: <RiLayoutGrid2Fill size={20} />,
         path: '/notes'
@@ -240,7 +240,7 @@ function AssesmentThree() {
                             <Route path='/' element={<DashboardAnalytics />} />
                             <Route path='/cardcollection' element={<CardsSection />} />
                             <Route path='/data' element={<Data />} />
-                            <Route path='/chat' element={<MainChatPage />} />
+                            {/* <Route path='/chat' element={<MainChatPage />} /> */}
                             <Route path='/notes' element={<AddImportantNotes />} />
                         </Routes>
                     </Typography>

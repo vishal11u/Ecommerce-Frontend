@@ -35,6 +35,17 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function UserProfile() {
+    const getGreeting = () => {
+        const currentHour = new Date().getHours();
+        if (currentHour < 12) {
+            return "Good Morning";
+        } else if (currentHour < 18) {
+            return "Good Afternoon";
+        } else {
+            return "Good Evening";
+        }
+    };
+
     return (
         <div className="px-4 hidden md:flex space-x-3 items-center border-r">
             <Stack direction="row" spacing={2}>
@@ -45,13 +56,17 @@ export default function UserProfile() {
                 >
                     <Tooltip title="Profile Image" arrow>
                         <IconButton sx={{ p: 0, border: '3px solid white' }}>
-                            <Avatar sx={{ height: 35, width: 35 }} alt="Remy Sharp" src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1721288731~exp=1721292331~hmac=2e6372797876ec9fb595e3f1e4fb49c8f71283d57589432006603d734a440d16&w=996" />
+                            <Avatar
+                                sx={{ height: 35, width: 35 }}
+                                alt="Remy Sharp"
+                                src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1721288731~exp=1721292331~hmac=2e6372797876ec9fb595e3f1e4fb49c8f71283d57589432006603d734a440d16&w=996"
+                            />
                         </IconButton>
                     </Tooltip>
                 </StyledBadge>
             </Stack>
             <div className="text-[13px]">
-                <h1>Good Day</h1>
+                <h1>{getGreeting()}</h1>
                 <p>Super Admin</p>
             </div>
         </div>

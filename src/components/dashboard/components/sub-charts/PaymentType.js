@@ -18,7 +18,7 @@ function PaymentType() {
     const fetchPaymentData = async (filter) => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/api/dashboard');
+            const response = await axios.get('https://ecommerce-backend-three-eta.vercel.app/api/dashboard');
             const paymentEntries = response.data.payments;
 
             if (!Array.isArray(paymentEntries)) {

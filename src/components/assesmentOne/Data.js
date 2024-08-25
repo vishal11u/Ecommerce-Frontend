@@ -21,7 +21,7 @@ const Data = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://localhost:5000/api/data', {
+            const res = await axios.get('https://ecommerce-backend-three-eta.vercel.app/api/data', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setData(res.data);
@@ -41,7 +41,7 @@ const Data = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.post('http://localhost:5000/api/data', { name, contactNumber, email }, {
+            const res = await axios.post('https://ecommerce-backend-three-eta.vercel.app/api/data', { name, contactNumber, email }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setData([...data, res.data]);
@@ -69,7 +69,7 @@ const Data = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/data/${id}`, {
+            await axios.delete(`https://ecommerce-backend-three-eta.vercel.app/api/data/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setData(data.filter(d => d._id !== id));
@@ -108,7 +108,7 @@ const Data = () => {
         try {
             const token = localStorage.getItem('token');
             const updatedData = { name, contactNumber, email };
-            const res = await axios.put(`http://localhost:5000/api/data/${editId}`, updatedData, {
+            const res = await axios.put(`https://ecommerce-backend-three-eta.vercel.app/api/data/${editId}`, updatedData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setData(data.map(d => (d._id === editId ? res.data : d)));

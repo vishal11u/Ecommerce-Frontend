@@ -11,49 +11,62 @@ function Notes() {
   const [editNoteId, setEditNoteId] = useState(null);
   const [editNoteText, setEditNoteText] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false); // For showing the loading spinner
 
   useEffect(() => {
     fetchNotes();
   }, []);
 
   const fetchNotes = async () => {
+    setLoading(true); // Start loading
     try {
-      const response = await axios.get('http://localhost:5000/api/notes');
+      const response = await axios.get('https://ecommerce-backend-three-eta.vercel.app/api/notes');
       setNotes(response.data);
     } catch (error) {
       console.error('Error fetching notes:', error);
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
   const addNote = async () => {
+    setLoading(true); // Start loading
     try {
-      await axios.post('http://localhost:5000/api/notes', { message: newNote });
+      await axios.post('https://ecommerce-backend-three-eta.vercel.app/api/notes', { message: newNote });
       setNewNote('');
       fetchNotes();
       setModalOpen(false);
     } catch (error) {
       console.error('Error adding note:', error);
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
   const updateNote = async () => {
+    setLoading(true); // Start loading
     try {
-      await axios.put(`http://localhost:5000/api/notes/${editNoteId}`, { message: editNoteText });
+      await axios.put(`https://ecommerce-backend-three-eta.vercel.app/api/notes/${editNoteId}`, { message: editNoteText });
       setEditNoteId(null);
       setEditNoteText('');
       fetchNotes();
       setModalOpen(false);
     } catch (error) {
       console.error('Error updating note:', error);
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
   const deleteNote = async (id) => {
+    setLoading(true); // Start loading
     try {
-      await axios.delete(`http://localhost:5000/api/notes/${id}`);
+      await axios.delete(`https://ecommerce-backend-three-eta.vercel.app/api/notes/${id}`);
       fetchNotes();
     } catch (error) {
       console.error('Error deleting note:', error);
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
@@ -76,35 +89,51 @@ function Notes() {
         <BsStars size={20} className="mr-2" />
         Add Notes
       </button>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {notes.map((note) => (
-          <div key={note._id} className="bg-white border rounded-lg shadow-md h-[290px] overflow-y-auto w-[100%] transition-all hover:scale-[1.02]">
-            <div className="overflow-y-auto">
-              <div className='flex items-center justify-end space-x-3 -mt-0 bg-indigo-500 py-2 px-4'>
-                <button type='button' className='p-1 bg-blue-600 text-white rounded-md'
-                  onClick={() => {
-                    setEditNoteId(note._id);
-                    setEditNoteText(note.message);
-                    setModalOpen(true)
-                  }}
-                >
-                  <MdOutlineEdit size={21} />
-                </button>
-                <button type='button' className='p-1 rounded-md bg-red-500 text-white'
-                  onClick={() => deleteNote(note._id)}
-                >
-                  <MdOutlineDelete size={21} />
-                </button>
+
+      {/* Loading Indicator */}
+      {loading && (
+        <div className="text-center text-lg font-bold mt-10">
+          Loading...
+        </div>
+      )}
+
+      {!loading && notes?.length > 0 ? (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {notes.map((note) => (
+            <div key={note._id} className="bg-white border rounded-lg shadow-md h-[290px] overflow-y-auto w-[100%] transition-all hover:scale-[1.02]">
+              <div className="overflow-y-auto">
+                <div className='flex items-center justify-end space-x-3 -mt-0 bg-indigo-500 py-2 px-4'>
+                  <button type='button' className='p-1 bg-blue-600 text-white rounded-md'
+                    onClick={() => {
+                      setEditNoteId(note._id);
+                      setEditNoteText(note.message);
+                      setModalOpen(true)
+                    }}
+                  >
+                    <MdOutlineEdit size={21} />
+                  </button>
+                  <button type='button' className='p-1 rounded-md bg-red-500 text-white'
+                    onClick={() => deleteNote(note._id)}
+                  >
+                    <MdOutlineDelete size={21} />
+                  </button>
+                </div>
+                <h2 className="text-[15px] font-semibold mt-1.5 px-3.5">{note.message}</h2>
               </div>
-              <h2 className="text-[15px] font-semibold mt-1.5 px-3.5">{note.message}</h2>
             </div>
+          ))}
+        </div>
+      ) : (
+        !loading && (
+          <div className="text-center text-lg font-bold mt-10">
+            No notes yet
           </div>
-        ))}
-      </div>
+        )
+      )}
 
       <Modal open={modalOpen}>
         <div className="bg-white p-4 rounded-lg shadow-lg max-w-2xl mx-auto mt-[15%]">
-          <h2 className="text-xl font-bold mb-2">Add New Note</h2>
+          <h2 className="text-xl font-bold mb-2">{editNoteId ? 'Edit Note' : 'Add New Note'}</h2>
           {!editNoteId && (
             <div className="mb-2 text-right">
               <textarea

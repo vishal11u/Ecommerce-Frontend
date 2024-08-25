@@ -21,7 +21,7 @@ function Notifications() {
 
     const fetchNotifications = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/notification/unread/count');
+            const res = await axios.get('https://ecommerce-backend-three-eta.vercel.app/notification/unread/count');
             setUnreadCount(res.data);
         } catch (error) {
             console.error('Error fetching notifications:', error);
@@ -78,7 +78,7 @@ function NotificationModal({ open, handleClose }) {
 
     const fetchNotifications = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/notification');
+            const response = await axios.get('https://ecommerce-backend-three-eta.vercel.app/api/notification');
             setNotifications(response.data);
         } catch (error) {
             console.error('Error fetching notifications:', error);
@@ -87,7 +87,7 @@ function NotificationModal({ open, handleClose }) {
 
     const markAllAsRead = async () => {
         try {
-            await axios.post('http://localhost:5000/api/notification/mark-all-read');
+            await axios.post('https://ecommerce-backend-three-eta.vercel.app/api/notification/mark-all-read');
             setNotifications(notifications.map(notification => ({ ...notification, isRead: true })));
             setUnreadCount(0);
         } catch (error) {

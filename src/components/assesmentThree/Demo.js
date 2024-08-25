@@ -50,26 +50,26 @@ const drawerModules = [
         icon: <MdOutlineDashboard color='#424242' size={25} />,
         path: '/'
     },
+    // {
+    //     id: 2,
+    //     title: 'Group Chat',
+    //     icon: <RiMessage2Line color='#424242' size={25} />,
+    //     path: '/chat'
+    // },
     {
         id: 2,
-        title: 'Group Chat',
-        icon: <RiMessage2Line color='#424242' size={25} />,
-        path: '/chat'
-    },
-    {
-        id: 3,
         title: 'Details',
         icon: <SiOpenbadges color='#424242' size={25} />,
         path: '/data'
     },
     {
-        id: 4,
+        id: 3,
         title: 'Products',
         icon: <BsCreditCard2Front color='#424242' size={25} />,
         path: '/cardcollection'
     },
     {
-        id: 5,
+        id: 4,
         title: 'Notes',
         icon: <RiLayoutGrid2Fill color='#424242' size={25} />,
         path: '/notes'

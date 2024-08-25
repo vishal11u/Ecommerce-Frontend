@@ -3,7 +3,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 const AuthService = () => {
-    const apiUrl = 'http://localhost:5000/api/auth/login';
+    const apiUrl = 'https://ecommerce-backend-three-eta.vercel.app/api/auth/login';
     return apiUrl;
 };
 

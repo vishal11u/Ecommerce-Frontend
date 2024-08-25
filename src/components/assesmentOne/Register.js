@@ -13,8 +13,9 @@ const Register = ({
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/auth/register', { username, password });
+            await axios.post('https://ecommerce-backend-three-eta.vercel.app/api/auth/register', { username, password });
             navigate('/login');
+            setRegister(false)
             toast.success("Resgister Successfully")
         } catch (error) {
             // toast.error('Registration failed. Please try again.');

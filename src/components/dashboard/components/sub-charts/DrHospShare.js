@@ -21,7 +21,7 @@ function DrHospShare() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/api/dashboard');
+            const response = await axios.get('https://ecommerce-backend-three-eta.vercel.app/api/dashboard');
             const { delivered, returned } = response.data.orders;
 
             const totalDelivered = delivered.reduce((acc, item) => acc + item.count, 0);

@@ -56,10 +56,10 @@ function AddNewCard({
         try {
             let res;
             if (isEdit) {
-                res = await axios.put(`http://localhost:5000/api/card/${editData._id}`, formData);
+                res = await axios.put(`https://ecommerce-backend-three-eta.vercel.app/api/card/${editData._id}`, formData);
                 toast.success('Card updated successfully!');
             } else {
-                res = await axios.post('http://localhost:5000/api/card', formData);
+                res = await axios.post('https://ecommerce-backend-three-eta.vercel.app/api/card', formData);
                 toast.success('Card added successfully!');
             }
             setData(prevData => isEdit ? prevData.map(card => card._id === res.data._id ? res.data : card) : [...prevData, res.data]);

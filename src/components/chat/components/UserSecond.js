@@ -34,7 +34,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
 }));
 
-const ENDPOINT = 'http://localhost:5000';
+const ENDPOINT = 'https://ecommerce-backend-three-eta.vercel.app/api/dashboard';
 
 const UserSecond = () => {
     const [messages, setMessages] = useState([]);

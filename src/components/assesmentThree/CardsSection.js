@@ -28,7 +28,7 @@ function CardsSection() {
     setLoading(true);
     try {
       // const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/card');
+      const res = await axios.get('https://ecommerce-backend-three-eta.vercel.app/api/card');
       setData(res.data);
       setNoData(res.data.length === 0);
     } catch (error) {
@@ -41,7 +41,7 @@ function CardsSection() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/card/${id}`);
+      await axios.delete(`https://ecommerce-backend-three-eta.vercel.app/api/card/${id}`);
       setData(prevData => prevData.filter(card => card._id !== id));
       toast.success('Card deleted successfully!');
     } catch (error) {

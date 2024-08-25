@@ -20,7 +20,7 @@ function OPDIncome() {
     const fetchOrderData = async (filter) => {
         setLoading(true); 
         try {
-            const response = await axios.get('http://localhost:5000/api/dashboard');
+            const response = await axios.get('https://ecommerce-backend-three-eta.vercel.app/api/dashboard');
             const fetchedData = response.data;
 
             const orderData = fetchedData.orderTypes.offline.map(item => ({

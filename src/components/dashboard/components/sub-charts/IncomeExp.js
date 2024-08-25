@@ -15,7 +15,7 @@ function IncomeExp() {
     const fetchData = async (filter) => {
         setLoading(true); 
         try {
-            const response = await axios.get('http://localhost:5000/api/dashboard');
+            const response = await axios.get('https://ecommerce-backend-three-eta.vercel.app/api/dashboard');
             const { incomeExpenses } = response.data;
 
             const getDayName = (date) => {
